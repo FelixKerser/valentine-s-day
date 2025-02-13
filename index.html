@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Будешь моей Валентинкой?</title>
+    <style>
+        body {
+            background-color: #ffdde1;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            /* overflow: hidden; */
+        }
+        h1 {
+            color: #ff4b5c;
+            margin-top: 50px;
+        }
+        h2{
+            color: #ff4b5c;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .btn {
+            background-color: #ff4b5c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .btn:hover {
+            background-color: #ff6b7a;
+        }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .slider {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            margin: 50px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+        }
+        .slide img {
+            width: 100%;
+            border-radius: 10px;
+            max-height:540px;
+            object-fit: cover;
+        }
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .slider-btn {
+            background-color: #ff4b5c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts"></div>
+    <h1>Будешь ли ты моей Валентинкой? ❤️</h1>
+    <div class="container">
+        <button class="btn" onclick="showLove()">Да</button>
+        <button class="btn" onclick="showLove()">Конечно!</button>
+    </div>
+    <h2>Отпразднуем всё в марте :></h2>
+
+    <div class="slider">
+        <div class="slides">
+            <div class="slide"><img src="1.jpg" alt="Романтика"></div>
+            <div class="slide"><img src="2.jpg" alt="Свидание"></div>
+            <div class="slide"><img src="3.jpg" alt="Сердце"></div>
+            <div class="slide"><img src="4.jpg" alt="Романтика"></div>
+            <div class="slide"><img src="5.jpg" alt="Свидание"></div>
+            <div class="slide"><img src="6.jpg" alt="Сердце"></div>
+            <div class="slide"><img src="7.jpg" alt="Романтика"></div>
+            <div class="slide"><img src="8.jpg" alt="Свидание"></div>
+        </div>
+    </div>
+    <div class="slider-controls">
+        <button class="slider-btn" onclick="prevSlide()">❮</button>
+        <button class="slider-btn" onclick="nextSlide()">❯</button>
+    </div>
+
+    <script>
+        function showLove() {
+            window.open("https://ogotop.com/torrent/0225/The_Sims_4_v1.112.519.1020.torrent", "_blank");
+            alert("Люблю тебя, Карина! ❤️");
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.style.position = "absolute";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = "-20px";
+            heart.style.fontSize = Math.random() * 20 + 20 + "px";
+            heart.style.animation = "fall 3s linear infinite";
+            document.querySelector(".hearts").appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+        setInterval(createHeart, 300);
+
+        let slideIndex = 0;
+        const slides = document.querySelector(".slides");
+        const totalSlides = document.querySelectorAll(".slide").length;
+
+        function showSlide(index) {
+            if (index >= totalSlides) slideIndex = 0;
+            if (index < 0) slideIndex = totalSlides - 1;
+            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+        }
+
+        function nextSlide() {
+            slideIndex++;
+            showSlide(slideIndex);
+        }
+
+        function prevSlide() {
+            slideIndex--;
+            showSlide(slideIndex);
+        }
+
+        setInterval(nextSlide, 3000);
+    </script>
+    
+    <style>
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</body>
+</html>
